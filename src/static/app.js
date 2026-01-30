@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (details.participants && details.participants.length > 0) {
           details.participants.forEach((participant) => {
+            const deleteIcon = document.createElement('span');
+            deleteIcon.textContent = '🗑️';
+            deleteIcon.style.cursor = 'pointer';
+            deleteIcon.onclick = () => unregisterParticipant(activityCard, participant);
+            li.appendChild(deleteIcon);
             const li = document.createElement("li");
             li.textContent = participant;
             ul.appendChild(li);
@@ -124,4 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize app
   fetchActivities();
+    const script = document.createElement('script');
+    script.src = 'unregister.js';
+    document.body.appendChild(script);
 });
